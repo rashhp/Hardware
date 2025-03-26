@@ -1,0 +1,25 @@
+#include <18F4550.h>
+#fuses HSPLL, PLL5, USBDIV, NOWDT, CPUDIV1, NOPROTECT, NODEBUG, NOPBADEN, NOLVP, NOVREGEN
+#use delay(clock=48MHz)
+#define LCD_DATA_PORT getenv("SFR:PORTB")
+#include <lcd.c>
+
+#byte PORTC = 0xF83  // Dirección del puerto C
+
+void main(void) {
+    lcd_init(); // Configura la pantalla LCD y establece velocidad de comunicación
+    lcd_gotoxy(5, 2);
+    lcd_putc("BOTÓN A");
+
+    set_tris_e(0b00000001); // Configura RE0 como entrada (1)
+    while (true) {
+        if (input(RE0)) { // Verifica si el botón está presionado
+            lcd_gotoxy(1, 1);
+            lcd_putc("BOTÓN PRESIONADO");
+            delay_ms(1000); // Espera un segundo
+            lcd_gotoxy(5, 2);
+            lcd_putc("BOTÓN A"); // Vuelve al mensaje original
+        }
+    }
+}
+

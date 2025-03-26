@@ -1,0 +1,73 @@
+[PROJECT]
+Target=LCD.hex
+Processor_Text=PIC18F4550
+CCSVerions=5.115
+Compiler=PCH
+CCSVersion=5.115
+[Target Data]
+FileList=LCD.c
+[Directories]
+Include=
+[C:\Users\usuario\Desktop\Pract11\LCD]
+Type=4
+[mru-list]
+1=LCD.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=3
+D1=16-10-2024
+D1_L=20
+D1_L1=[44079]Project Opened.
+D1_L2=[44082]Started Editing.
+D1_L3=[44382]Stopped Editing.
+D1_L4=[44652]Started Editing.
+D1_L5=[44986]Stopped Editing.
+D1_L6=[45905]Started Editing.
+D1_L7=[59298]Project Opened.
+D1_L8=[59304]Started Editing.
+D1_L9=[60685]Stopped Editing.
+D1_L10=[61766]Started Editing.
+D1_L11=[62066]Stopped Editing.
+D1_L12=[62463]Started Editing.
+D1_L13=[63448]Stopped Editing.
+D1_L14=[65559]Started Editing.
+D1_L15=[67294]Stopped Editing.
+D1_L16=[67584]Started Editing.
+D1_L17=[67884]Stopped Editing.
+D1_L18=[67960]Started Editing.
+D1_L19=[68270]Stopped Editing.
+TotalEdit=56
+TotalDebug=0
+D1_E=54
+D1_D=0
+D1_L20=[68279]Project Closed.
+D2=17-10-2024
+D2_L=6
+D2_L1=[47773]Project Opened.
+D2_L2=[50073]Project Closed.
+D2_L3=[55619]Project Opened.
+D2_L4=[55623]Started Editing.
+D2_L5=[56013]Stopped Editing.
+D2_E=2
+D2_D=0
+D2_L6=[56044]Project Closed.
+D3=07-11-2024
+D3_L=2
+D3_L1=[65198]Project Opened.
+D3_L2=[67893]Project Closed.
+
+[Opened Files]
+1=LCD.c
+t1=33
+Count=1
+[LCD.c]
+Type=4
+
+[defines]
+buildcount=44
+[Units]
+Count=1
+1=LCD (main)

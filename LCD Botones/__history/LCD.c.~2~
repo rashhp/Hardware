@@ -1,0 +1,123 @@
+#include <18F4550.h>
+#fuses HSPLL, NOWDT, NOPROTECT, NOLVP, NOMCLR
+#use delay(clock=4000000)  // Configuración para 4 MHz
+
+// Definición de pines LCD
+#define LCD_RS  PIN_D0
+#define LCD_EN  PIN_D1
+#define LCD_D4  PIN_D2
+#define LCD_D5  PIN_D3
+#define LCD_D6  PIN_D4
+#define LCD_D7  PIN_D5
+
+// Configuración de dirección de pines
+#define LCD_RS_Direction   set_tris_d(0xFE)  // RS como salida
+#define LCD_EN_Direction   set_tris_d(0xFD)  // EN como salida
+#define LCD_D4_Direction   set_tris_d(0xFB)  // D4 como salida
+#define LCD_D5_Direction   set_tris_d(0xF7)  // D5 como salida
+#define LCD_D6_Direction   set_tris_d(0xEF)  // D6 como salida
+#define LCD_D7_Direction   set_tris_d(0xDF)  // D7 como salida
+
+// Textos a mostrar en el LCD
+char txt1[] = "''Mi soledad no ";
+char txt2[] = "depende de la";
+char txt3[] = "presencia o ";
+char txt4[] = "ausencia de las";
+char txt5[] = "personas, odio a";
+char txt6[] = "quien roba mi";
+char txt7[] = "soledad";
+char txt8[] = "sin a cambio,";
+char txt9[] = "ofrecerme";
+char txt10[] = "compania de";
+char txt11[] = "verdad.''";
+char txt12[] = "F. Nietzsche";
+
+void Lcd_Cmd(char cmd) {
+    output_bit(LCD_RS, 0); // Comando
+    output_d(cmd);         // Enviar el comando al puerto D
+    output_bit(LCD_EN, 1); // Habilitar
+    delay_ms(2);
+    output_bit(LCD_EN, 0); // Deshabilitar
+}
+
+void Lcd_Out(char row, char col, char *txt) {
+    if (row == 1) {
+        Lcd_Cmd(0x80 + (col - 1)); // Dirección para la primera fila
+    } else {
+        Lcd_Cmd(0xC0 + (col - 1)); // Dirección para la segunda fila
+    }
+    while (*txt) {
+        output_bit(LCD_RS, 1); // Datos
+        output_d(*txt++);      // Enviar el dato al puerto D
+        output_bit(LCD_EN, 1); // Habilitar
+        delay_ms(2);
+        output_bit(LCD_EN, 0); // Deshabilitar
+    }
+}
+
+void Lcd_Init() {
+    LCD_RS_Direction;
+    LCD_EN_Direction;
+    LCD_D4_Direction;
+    LCD_D5_Direction;
+    LCD_D6_Direction;
+    LCD_D7_Direction;
+
+    delay_ms(20); // Espera inicial
+    Lcd_Cmd(0x28); // Modo de 4 bits
+    Lcd_Cmd(0x0C); // Pantalla encendida, cursor apagado
+    Lcd_Cmd(0x01); // Borrar pantalla
+    delay_ms(2);
+}
+
+void Move_Delay() {
+    delay_ms(500); // Velocidad de movimiento del texto
+}
+
+void borrar() {
+    Lcd_Cmd(0x01); // Borrar pantalla
+    delay_ms(2);
+}
+
+void main() {
+    // Configuración de registros
+    ADCON1 = 0x0F;  // Configura puertos digitales
+    CMCON = 7;      // Comparadores apagados
+    OSCCON = 0xFF;  // Configuración del oscilador
+
+    // Configurar RB0 como entrada
+    set_tris_b(0x01);  // RB0 entrada, resto salida
+
+    // Inicializa el LCD
+    Lcd_Init();
+    
+    while (1) {
+        if (input(PIN_B0) == 0) { // Si se presiona el botón en RB0
+            Lcd_Out(1, 1, txt1);
+            Lcd_Out(2, 1, txt2);
+            delay_ms(2500);
+            borrar();
+            Lcd_Out(1, 1, txt3);
+            Lcd_Out(2, 1, txt4);
+            delay_ms(2500);
+            borrar();
+            Lcd_Out(1, 1, txt5);
+            Lcd_Out(2, 1, txt6);
+            delay_ms(2500);
+            borrar();
+            Lcd_Out(1, 1, txt7);
+            Lcd_Out(2, 1, txt8);
+            delay_ms(2500);
+            borrar();
+            Lcd_Out(1, 1, txt9);
+            Lcd_Out(2, 1, txt10);
+            delay_ms(2500);
+            borrar();
+            Lcd_Out(1, 1, txt11);
+            Lcd_Out(2, 1, txt12);
+            delay_ms(2500);
+            borrar();
+        }
+    }
+}
+

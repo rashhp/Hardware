@@ -1,0 +1,102 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     A
+005-006 @sprintf_string
+007     lcd_init.i
+007     @PSTRINGC_728.@SCRATCH1
+008-00B lcd_init.LCD_INIT_STRING
+008     @PSTRINGC_728.@SCRATCH2
+009     lcd_putc.c
+00A     lcd_gotoxy.x
+00B     lcd_gotoxy.y
+00C     @delay_ms1.P1
+00C     lcd_gotoxy.address
+00C     lcd_init.@SCRATCH1
+00D     lcd_gotoxy.@SCRATCH1
+00E     lcd_send_byte.address
+00F     lcd_send_byte.n
+010     lcd_read_byte.low
+010     lcd_send_byte.@SCRATCH1
+011     lcd_read_byte.high
+011     lcd_send_nibble.n
+012     lcd_read_byte.@SCRATCH1
+F83     PSP_DATA
+F83     lcd
+F8C     lcdlat
+F95     lcdtris
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P3
+FE9-FEA @WRITE_PACKED_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  @const744.call
+000014  @const749.call
+000026  @const750.call
+00003A  @const751.call
+00004E  @const752.call
+000062  @const753.call
+000076  @delay_ms1
+00009E  lcd_send_nibble
+0000B6  lcd_read_nibble
+0000C2  lcd_read_byte
+000100  lcd_send_byte
+00013A  lcd_init
+0001AE  lcd_gotoxy
+0001D0  lcd_putc
+000222  @PSTRINGC_728
+000242  MAIN
+000242  @cinit1
+000258  @cinit2
+00030C  @goto11374
+
+Project Directory:
+    C:\Users\usuario\Desktop\Pract11\
+
+Project Files:
+    LCD.c                                                   [17-oct.-24 15:28  CRC=BBCFA262]
+    ..\..\..\..\Program Files (x86)\PICC\Devices\18F4550.h  [21-feb.-20 15:51  CRC=0BC0B1A1]
+    ..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c      [22-feb.-16 09:05  CRC=D1A6378A]
+
+Source signature=6ADCC317
+Program memory checksum=0000
+Hex file CRC=CEB9
+
+Units:
+    C:\Users\usuario\Desktop\Pract11\LCD (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Compile Mode:   CCS5
+
+Output Files:
+    XREF file:   LCD.xsym
+    Errors:      LCD.err
+    Ext Symbols: LCD.esym
+    INHX32:      LCD.hex
+    Symbols:     LCD.sym
+    List:        LCD.lst
+    Debug/COFF:  LCD.cof
+    Project:     LCD.ccspjt
+    Call Tree:   LCD.tre
+    Statistics:  LCD.STA

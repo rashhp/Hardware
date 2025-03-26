@@ -1,0 +1,28 @@
+#include <18F4550.h>
+#fuses HSPLL, PLL5, USBDIV, NOWDT, CPUDIV1, NOPROTECT, NODEBUG, NOPBADEN, NOLVP, NOVREGEN
+#use delay(clock=48MHz)
+#define LCD_DATA_PORT getenv("SFR:PORTB")
+#include <lcd.c>
+
+// Definición del botón
+#define BUTTON (input(PIN_E0))
+
+void main(void) {
+    // Configuración inicial
+    lcd_init(); // Configura la pantalla LCD
+
+    // Configura el pin RE0 como entrada
+    set_tris_e(0b00000001); // RE0 como entrada
+
+    while (true) {
+        if (BUTTON == 0) { // Si se presiona el botón
+            lcd_gotoxy(5, 2);
+            lcd_putc("ADIOS"); // Muestra "ADIOS"
+            delay_ms(2000); // Muestra el mensaje por 2 segundos
+            lcd_gotoxy(5, 2);
+            lcd_putc("    "); // Borra el mensaje
+            delay_ms(500); // Espera un poco antes de volver a verificar
+        }
+    }
+}
+

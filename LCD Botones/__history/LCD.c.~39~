@@ -1,0 +1,61 @@
+#include <18F4550.h>
+#use delay(clock=4000000)
+#include <lcd.c>
+
+int A = 0;
+
+void main() {
+    set_tris_A(0xFF); // RA0-RA3 como entradas
+    set_tris_B(0x00); // RB como salidas
+    lcd_init();
+    output_B(0x00);
+    
+    // Inicializar el mensaje fijo en la línea 1
+    lcd_gotoxy(1, 1);
+    printf(lcd_putc, "Pulsa un Boton");
+    
+    do {
+        // Leer el estado de los botones
+        if (!input(pin_A0)) { // Botón para A = 1
+            A = 1;
+            delay_ms(200); // Antirrebote
+        }
+        
+        if (!input(pin_A1)) { // Botón para A = 2
+            A = 2;
+            delay_ms(200); // Antirrebote
+        }
+        
+        if (!input(pin_A2)) { // Botón para A = 3
+            A = 3;
+            delay_ms(200); // Antirrebote
+        }
+        
+        if (!input(pin_A3)) { // Botón para A = 4
+            A = 4;
+            delay_ms(200); // Antirrebote
+        }
+
+        // Actualizar solo la línea 2 según el valor de A
+        lcd_gotoxy(1, 2); // Ir a la segunda línea
+        switch (A) {
+            case 0:
+                printf(lcd_putc, "                "); // Borrar la línea
+                break;
+            case 1:
+                printf(lcd_putc, "HOLA            ");
+                break;
+            case 2:
+                printf(lcd_putc, "TE              ");
+                break;
+            case 3:
+                printf(lcd_putc, "AMO             ");
+                break;
+            case 4:
+                printf(lcd_putc, "MON :)");
+                break;
+        }
+        
+    } while (true);
+}
+
