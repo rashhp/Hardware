@@ -1,0 +1,63 @@
+
+ROM used:   2062/32768 (6%)
+            2062/32768 (6%) including unused fragments
+
+            1.5 Average locations per line
+            21.0 Average locations per statement
+
+RAM used:   20/2048 (1%) at main() level
+            42/2048 (2%) worst case
+
+Stack used: 4 worst case (4 in main + 0 for interrupts)
+Stack size: 31
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   38    14  14  Voltaje.c
+  865     0   0  ..\..\..\..\Program Files (x86)\PICC\Devices\18F4550.h
+  456    84  86  ..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c
+----- -----
+ 1359    98 Total
+
+Page ROM  %  RAM    Vol Diff  Functions:
+---- --- --- ---    --- ----  ----------
+0     40   1    1             @delay_ms1
+0     62   2    3    596  5.9  lcd_read_byte
+0     12   0    0     59  4.2  lcd_read_nibble
+0     24   1    1    179  3.3  lcd_send_nibble
+0     58   1    3    460  4.7  lcd_send_byte
+0    116   3    6    814  7.2  lcd_init
+0     34   1    4    208  6.3  lcd_gotoxy
+0     80   2    1    354  4.7  lcd_putc
+0    310   8   14    463  3.7  MAIN
+0     12   0    0             @const746
+0     34   1    2             @PSTRINGC_728
+0     56   1    2             @ITOF
+0    242   6   11             @MULFF
+0    348   8   14             @DIVFF
+0     14   0    0             @const759
+0     64   2    5             @FTOSD
+0    142   3   13             @DIV3232
+0    378   9   13             @PRINTF_L32D_728FPFPF
+0     32   1    3             @PSTRINGCN_728
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               8
+    Statements              98
+    Comments                271
+    Volume (V)              4761
+    Difficulty (D)          37.2
+    Effort to implement (E) 177212
+    Time to implement (T)   2 hours, 44 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   8
+    Maintainability (MI)    117
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-07FFE  2058  30706  
+
+
+

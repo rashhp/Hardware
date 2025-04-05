@@ -1,0 +1,57 @@
+[PROJECT]
+Target=Voltaje.hex
+Processor_Text=PIC18F4550
+CCSVerions=5.115
+Compiler=PCH
+CCSVersion=5.115
+[Target Data]
+FileList=Voltaje.c
+[Directories]
+Include=
+[C:\Users\usuario\Desktop\Pract12\Voltaje]
+Type=4
+[mru-list]
+1=Voltaje.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=2
+D1=18-10-2024
+D1_L=10
+D1_L1=[54531]Project Opened.
+D1_L2=[55270]Started Editing.
+D1_L3=[55852]Stopped Editing.
+D1_L4=[57954]Started Editing.
+D1_L5=[58254]Stopped Editing.
+D1_L6=[58418]Started Editing.
+D1_L7=[58718]Stopped Editing.
+D1_L8=[58791]Started Editing.
+D1_L9=[59091]Stopped Editing.
+TotalEdit=6
+TotalDebug=0
+D1_E=5
+D1_D=0
+D1_L10=[59780]Project Closed.
+D2=08-11-2024
+D2_L=4
+D2_L1=[54067]Project Opened.
+D2_L2=[54711]Started Editing.
+D2_L3=[55031]Stopped Editing.
+D2_E=1
+D2_D=0
+D2_L4=[58142]Project Closed.
+
+[Opened Files]
+1=Voltaje.c
+t1=1
+Count=1
+[Voltaje.c]
+Type=4
+
+[defines]
+buildcount=5
+[Units]
+Count=1
+1=Voltaje (main)

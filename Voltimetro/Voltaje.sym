@@ -1,0 +1,146 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004-005 @sprintf_string
+006-009 MAIN.voltaje
+00A-00B MAIN.valor
+00C-00F MAIN.calibracion
+010     lcd_init.i
+010     @PSTRINGCN_728.P1
+010-011 @ITOF.P2
+010-013 @PRINTF_L32D_728FPFPF.P3
+010     MAIN.@SCRATCH1
+010     @PSTRINGC_728.@SCRATCH1
+011-014 lcd_init.LCD_INIT_STRING
+011     MAIN.@SCRATCH2
+011     @PSTRINGC_728.@SCRATCH2
+011     @PSTRINGCN_728.@SCRATCH1
+012     MAIN.@SCRATCH3
+012     @PSTRINGCN_728.@SCRATCH2
+013     MAIN.@SCRATCH4
+014     @PRINTF_L32D_728FPFPF.P1
+014-017 @DIVFF.P2
+015     lcd_init.@SCRATCH1
+015     @PRINTF_L32D_728FPFPF.@SCRATCH1
+016     @PRINTF_L32D_728FPFPF.@SCRATCH2
+017     @PRINTF_L32D_728FPFPF.@SCRATCH3
+018-01B @DIVFF.P1
+018     @PRINTF_L32D_728FPFPF.@SCRATCH4
+019     @PRINTF_L32D_728FPFPF.@SCRATCH5
+01A     @PRINTF_L32D_728FPFPF.@SCRATCH6
+01B     @PRINTF_L32D_728FPFPF.@SCRATCH7
+01C     @DIVFF.@SCRATCH1
+01C     @PRINTF_L32D_728FPFPF.@SCRATCH8
+01D     lcd_putc.c
+01D-020 @FTOSD.P1
+01D-020 @DIV3232.P2
+01D-020 @MULFF.P3
+01D     @DIVFF.@SCRATCH2
+01E     @delay_ms1.P1
+01E     lcd_gotoxy.x
+01E     @DIVFF.@SCRATCH3
+01F     lcd_gotoxy.y
+01F     @DIVFF.@SCRATCH4
+020     lcd_gotoxy.address
+020     @DIVFF.@SCRATCH5
+021-024 @MULFF.P1
+021-024 @DIV3232.P2
+021     lcd_gotoxy.@SCRATCH1
+021     @DIVFF.@SCRATCH6
+021     @FTOSD.@SCRATCH1
+022     lcd_send_byte.address
+023     lcd_send_byte.n
+024     lcd_read_byte.low
+024     lcd_send_byte.@SCRATCH1
+025     lcd_send_nibble.n
+025     lcd_read_byte.high
+025     @MULFF.@SCRATCH1
+025     @DIV3232.@SCRATCH1
+026     lcd_read_byte.@SCRATCH1
+026     @MULFF.@SCRATCH2
+026     @DIV3232.@SCRATCH2
+027     @MULFF.@SCRATCH3
+027     @DIV3232.@SCRATCH3
+028     @DIV3232.@SCRATCH4
+029     @DIV3232.@SCRATCH5
+F83     PSP_DATA
+F83     lcd
+F8C     lcdlat
+F95     lcdtris
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P1
+FE9-FEA @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P3
+FE9-FEA @READ_PROGRAM_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  @const746.call
+000010  @const759.call
+00001E  @delay_ms1
+000046  lcd_send_nibble
+00005E  lcd_read_nibble
+00006A  lcd_read_byte
+0000A8  lcd_send_byte
+0000E2  lcd_init
+000156  lcd_gotoxy
+000178  lcd_putc
+0001C8  @PSTRINGC_728
+0001EA  @ITOF
+000222  @MULFF
+000314  @DIVFF
+000470  @FTOSD
+0004B0  @DIV3232
+00053E  @PRINTF_L32D_728FPFPF
+0006B8  @PSTRINGCN_728
+0006D8  MAIN
+0006D8  @cinit1
+0006EC  @cinit2
+
+Project Directory:
+    C:\Users\usuario\Desktop\Pract12\
+
+Project Files:
+    Voltaje.c                                               [18-oct.-24 16:19  CRC=AA752546]
+    ..\..\..\..\Program Files (x86)\PICC\Devices\18F4550.h  [21-feb.-20 15:51  CRC=0BC0B1A1]
+    ..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c      [22-feb.-16 09:05  CRC=D1A6378A]
+
+Source signature=598245FB
+Program memory checksum=0000
+Hex file CRC=B35D
+
+Units:
+    C:\Users\usuario\Desktop\Pract12\Voltaje (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Compile Mode:   CCS5
+
+Output Files:
+    XREF file:   Voltaje.xsym
+    Errors:      Voltaje.err
+    Ext Symbols: Voltaje.esym
+    INHX32:      Voltaje.hex
+    Symbols:     Voltaje.sym
+    List:        Voltaje.lst
+    Debug/COFF:  Voltaje.cof
+    Project:     Voltaje.ccspjt
+    Call Tree:   Voltaje.tre
+    Statistics:  Voltaje.STA

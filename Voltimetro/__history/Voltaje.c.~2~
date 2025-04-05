@@ -1,0 +1,35 @@
+#include <18F4550.h>
+#use delay(clock=4000000)
+#include <lcd.c>
+#use analog = A0  // Configurar RA0 como entrada analógica
+
+void main() {
+    float voltaje;
+    int16 adc_val;
+
+    // Configurar puertos
+    set_tris_A(0xFF); // RA0-RA3 como entradas
+    set_tris_B(0x00); // RB como salidas
+    lcd_init();
+    output_B(0x00);
+
+    // Mensaje inicial en el LCD
+    lcd_gotoxy(1, 1);
+    printf(lcd_putc, "Voltaje:      V");
+
+    while (true) {
+        // Leer el valor del ADC
+        adc_val = read_adc(); // Leer ADC de RA0
+
+        // Convertir el valor a voltaje
+        // Suponiendo Vref = 5V y 10 bits de resolución (0-1023)
+        voltaje = (adc_val * 5.0) / 1023.0;
+
+        // Mostrar el voltaje en el LCD
+        lcd_gotoxy(1, 2); // Ir a la segunda línea
+        printf(lcd_putc, "%.2f V       ", voltaje); // Mostrar el voltaje con dos decimales
+
+        delay_ms(500); // Esperar medio segundo antes de la siguiente lectura
+    }
+}
+
