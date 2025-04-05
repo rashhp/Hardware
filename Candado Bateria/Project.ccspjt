@@ -1,0 +1,97 @@
+[PROJECT]
+Target=Project.hex
+Processor_Text=PIC18F4550
+CCSVerions=5.115
+Compiler=PCH
+CCSVersion=5.115
+[Target Data]
+FileList=Project.c
+[Directories]
+Include=
+[C:\Users\usuario\Desktop\PROJECT ARQUI\Project]
+Type=4
+[mru-list]
+1=Project.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=4
+D1=30-10-2024
+D1_L=20
+D1_L1=[46835]Project Opened.
+D1_L2=[46846]Started Editing.
+D1_L3=[47446]Stopped Editing.
+D1_L4=[47789]Started Editing.
+D1_L5=[48128]Stopped Editing.
+D1_L6=[48231]Started Editing.
+D1_L7=[48712]Stopped Editing.
+D1_L8=[48883]Started Editing.
+D1_L9=[49775]Stopped Editing.
+D1_L10=[50567]Started Editing.
+D1_L11=[50611]Stopped Editing.
+TotalEdit=95
+TotalDebug=0
+D1_E=38
+D1_D=0
+D1_L12=[50614]Project Closed.
+D1_L13=[50744]Project Opened.
+D1_L14=[50790]Started Editing.
+D1_L15=[51189]Stopped Editing.
+D1_L16=[52086]Started Editing.
+D1_L17=[52860]Stopped Editing.
+D1_L18=[55759]Started Editing.
+D1_L19=[56518]Stopped Editing.
+D1_L20=[58437]Project Closed.
+D2=11-11-2024
+D2_L=10
+D2_L1=[57381]Project Opened.
+D2_L2=[60155]Started Editing.
+D2_L3=[62084]Stopped Editing.
+D2_L4=[62436]Started Editing.
+D2_L5=[62737]Stopped Editing.
+D2_E=33
+D2_D=0
+D2_L6=[63030]Project Closed.
+D2_L7=[63449]Project Opened.
+D2_L8=[63636]Started Editing.
+D2_L9=[63903]Stopped Editing.
+D2_L10=[63903]Project Closed.
+D3=12-11-2024
+D3_L=8
+D3_L1=[46060]Project Opened.
+D3_L2=[47687]Project Closed.
+D3_L3=[47687]Project Opened.
+D3_L4=[47802]Started Editing.
+D3_L5=[48781]Stopped Editing.
+D3_L6=[50422]Started Editing.
+D3_L7=[50820]Stopped Editing.
+D3_E=13
+D3_D=0
+D3_L8=[55346]Project Closed.
+D4=25-11-2024
+D4_L=8
+D4_L1=[47373]Project Opened.
+D4_L2=[48028]Project Closed.
+D4_L3=[48029]Project Opened.
+D4_L4=[48031]Started Editing.
+D4_L5=[48573]Stopped Editing.
+D4_L6=[48582]Started Editing.
+D4_L7=[49250]Stopped Editing.
+D4_E=11
+D4_D=0
+D4_L8=[49712]Project Closed.
+
+[Opened Files]
+1=Project.c
+t1=41
+Count=1
+[Project.c]
+Type=4
+
+[defines]
+buildcount=66
+[Units]
+Count=1
+1=Project (main)

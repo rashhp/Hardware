@@ -1,0 +1,189 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     kbd_getc.kbd_call_count
+005.0   kbd_getc.kbd_down
+006     kbd_getc.last_key
+007     kbd_getc.col
+008-00B calibracion
+00C-00D @sprintf_string
+00E     MAIN.dir
+00F     MAIN.boton
+010-013 MAIN.voltaje1
+014     lcd_init.i
+014-017 mostrar_bateria.voltaje
+014-017 @FLT.P1
+014     ingresar_password.tecla
+015-018 lcd_init.LCD_INIT_STRING
+015-018 ingresar_password.Password
+018-01B @FLT.P1
+018     mostrar_bateria.porcentaje
+019-01C @SFTOI.P1
+019     ingresar_password.dir
+019     @PSTRINGCN_728.P1
+019-01A leer_voltaje.valor
+019     @PRINTF_D_728.P1
+019     lcd_init.@SCRATCH1
+019     mostrar_bateria.@SCRATCH1
+01A     kbd_getc.kchar
+01A     @PRINTF_D_728.P1
+01A     mostrar_menu.dir
+01A     ingresar_password.@SCRATCH1
+01A     mostrar_bateria.@SCRATCH2
+01A     @PSTRINGCN_728.@SCRATCH1
+01B-01C @ITOF.P1
+01B     kbd_getc.row
+01B     leer_voltaje.@SCRATCH1
+01B     @PSTRINGC_728.@SCRATCH1
+01B     ingresar_password.@SCRATCH2
+01B     mostrar_bateria.@SCRATCH3
+01B     @PRINTF_D_728.@SCRATCH1
+01B     @PSTRINGCN_728.@SCRATCH2
+01C     kbd_getc.@SCRATCH1
+01C     leer_voltaje.@SCRATCH2
+01C     @PSTRINGC_728.@SCRATCH2
+01C     mostrar_bateria.@SCRATCH4
+01C     @PRINTF_D_728.@SCRATCH2
+01C     @FLT.@SCRATCH1
+01D     kbd_getc.@SCRATCH2
+01D     leer_voltaje.@SCRATCH3
+01D     @PRINTF_D_728.@SCRATCH3
+01D     @FLT.@SCRATCH2
+01E     leer_voltaje.@SCRATCH4
+01E     @PRINTF_D_728.@SCRATCH4
+01F     @DIV88.P1
+01F-022 @DIVFF.P2
+01F     lcd_putc.c
+01F-022 @MULFF.P1
+020     @delay_ms1.P1
+020     lcd_gotoxy.x
+020     @DIV88.P1
+021     lcd_gotoxy.y
+021     @DIV88.@SCRATCH1
+022     lcd_gotoxy.address
+023-026 @MULFF.P1
+023-026 @DIVFF.P2
+023     lcd_gotoxy.@SCRATCH1
+024     lcd_send_byte.address
+025     lcd_send_byte.n
+026     lcd_read_byte.low
+026     lcd_send_byte.@SCRATCH1
+027     lcd_send_nibble.n
+027     lcd_read_byte.high
+027     @MULFF.@SCRATCH1
+027     @DIVFF.@SCRATCH1
+028     lcd_read_byte.@SCRATCH1
+028     @MULFF.@SCRATCH2
+028     @DIVFF.@SCRATCH2
+029     @MULFF.@SCRATCH3
+029     @DIVFF.@SCRATCH3
+02A     @DIVFF.@SCRATCH4
+02B     @DIVFF.@SCRATCH5
+02C     @DIVFF.@SCRATCH6
+F81     lcd
+F83     kbd
+F83     PSP_DATA
+F8A     lcdlat
+F93     lcdtris
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P3
+FE9-FEA @READ_PROGRAM_MEMORY.P4
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  KEYS.call
+000014  KEYS.data
+000024  @const767.call
+000036  @const772.call
+000048  @const773.call
+00005A  @const774.call
+00006C  @const779.call
+00007E  @const780.call
+000092  @const781.call
+000094  @const782.call
+0000A6  @const783.call
+0000B8  @const784.call
+0000CA  @const785.call
+0000DC  @const786.call
+0000EE  @const792.call
+000100  @const793.call
+000112  @const802.call
+000124  @const812.call
+000136  @const813.call
+000148  @delay_ms1
+000170  lcd_send_nibble
+000190  lcd_read_nibble
+00019C  lcd_read_byte
+0001E2  lcd_send_byte
+00021C  lcd_init
+000290  lcd_gotoxy
+0002B2  lcd_putc
+000302  @PSTRINGC_728
+000322  mostrar_menu
+00037E  kbd_getc
+000434  @goto3571
+000456  ingresar_password
+0005F0  @ITOF
+000628  @MULFF
+00071A  @DIVFF
+000874  leer_voltaje
+00090C  @SFTOI
+000946  @DIV88
+00096E  @PRINTF_D_728
+000A1A  @PSTRINGCN_728
+000A3A  mostrar_bateria
+000B48  @FLT
+000BC0  @cinit1
+000BC0  MAIN
+000BDE  @cinit2
+
+Project Directory:
+    F:\PROJECT ARQUI\
+
+Project Files:
+    Project.c                                               [25-nov.-24 13:35  CRC=E6E26AD7]
+    C:\Program Files (x86)\PICC\Devices\18F4550.h           [21-feb.-20 15:51  CRC=0BC0B1A1]
+    C:\Program Files (x86)\PICC\Drivers\lcd.c               [22-feb.-16 09:05  CRC=D1A6378A]
+    KBD4x4.c                                                [23-oct.-24 18:36  CRC=4DD3C140]
+
+Source signature=5FF0D682
+Program memory checksum=0000
+Hex file CRC=7304
+
+Units:
+    F:\PROJECT ARQUI\Project (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Compile Mode:   CCS5
+
+Output Files:
+    XREF file:   Project.xsym
+    Errors:      Project.err
+    Ext Symbols: Project.esym
+    INHX32:      Project.hex
+    Symbols:     Project.sym
+    List:        Project.lst
+    Debug/COFF:  Project.cof
+    Project:     Project.ccspjt
+    Call Tree:   Project.tre
+    Statistics:  Project.STA
