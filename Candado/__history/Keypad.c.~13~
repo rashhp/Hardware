@@ -1,0 +1,78 @@
+#include <18F4550.h>           // Incluir la biblioteca para el PIC18F4550
+#device ADC=10
+#use delay(clock=4000000)    // Configura el reloj a 4 MHz
+
+unsigned short kp = 0;
+
+char keypadPort at PORTB;     // Asigna el puerto B para el teclado
+
+// Definición de pines para la pantalla LCD
+sbit LCD_RS at RD0_bit;
+sbit LCD_EN at RD1_bit;
+sbit LCD_D4 at RD2_bit;
+sbit LCD_D5 at RD3_bit;
+sbit LCD_D6 at RD4_bit;
+sbit LCD_D7 at RD5_bit;
+
+// Dirección de los pines para la pantalla LCD
+sbit LCD_RS_Direction at TRISD0_bit;
+sbit LCD_EN_Direction at TRISD1_bit;
+sbit LCD_D4_Direction at TRISD2_bit;
+sbit LCD_D5_Direction at TRISD3_bit;
+sbit LCD_D6_Direction at TRISD4_bit;
+sbit LCD_D7_Direction at TRISD5_bit;
+
+// Funciones que debes tener definidas en tus bibliotecas
+void Keypad_Init();           // Inicializa el teclado
+unsigned short Keypad_Key_Click(); // Lee la tecla presionada
+void Lcd_Init();              // Inicializa la pantalla LCD
+void Lcd_Cmd(char cmd);       // Envía un comando a la LCD
+void Lcd_Out(unsigned char row, unsigned char column, const char* text); // Muestra texto en la LCD
+void Lcd_Chr(unsigned char row, unsigned char column, char data); // Muestra un carácter en la LCD
+
+void main() {
+    ADCON1 = 0x0F; // Configura todos los pines como digitales
+
+    Keypad_Init(); // Inicializa el teclado
+
+    Lcd_Init(); // Inicializa la pantalla LCD
+    Lcd_Cmd(_LCD_CLEAR); // Limpia la pantalla
+    Lcd_Cmd(_LCD_CURSOR_OFF); // Desactiva el cursor
+
+    Lcd_Out(1, 1, "SE INGRESO :"); // Mensaje inicial
+
+    do {
+        kp = 0;
+
+        // Espera hasta que se presione una tecla
+        do {
+            kp = Keypad_Key_Click(); // Lee el teclado
+        } while (!kp);
+
+        // Asigna valores a las teclas presionadas
+        switch (kp) {
+            case 1: kp = '7'; break; // 7
+            case 2: kp = '8'; break; // 8
+            case 3: kp = '9'; break; // 9
+            case 4: kp = '/'; break; // /
+            case 5: kp = '4'; break; // 4
+            case 6: kp = '5'; break; // 5
+            case 7: kp = '6'; break; // 6
+            case 8: kp = '*'; break; // *
+            case 9: kp = '1'; break; // 1
+            case 10: kp = '2'; break; // 2
+            case 11: kp = '3'; break; // 3
+            case 12: kp = '-'; break; // -
+            case 13: kp = ' '; break; // Espacio o vacío
+            case 14: kp = '0'; break; // 0
+            case 15: kp = '='; break; // =
+            case 16: kp = '+'; break; // +
+            default: kp = ' '; break; // Maneja el caso por defecto
+        }
+        
+        // Muestra el carácter en la pantalla LCD
+        Lcd_Chr(1, 15, kp);
+
+    } while (1);
+}
+

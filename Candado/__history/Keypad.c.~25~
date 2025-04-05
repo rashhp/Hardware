@@ -1,0 +1,120 @@
+#include <xc.h>
+#include <stdint.h>
+#include <stdio.h>
+
+// Configuración de la frecuencia del oscilador
+#define _XTAL_FREQ 8000000 
+
+// Configuración del PIC
+#pragma config FOSC = INTOSC, WDT = OFF, LVP = OFF
+
+// Definiciones de pines
+#define LCD_RS LATCbits.LATC0
+#define LCD_E LATCbits.LATC1
+#define LED_YELLOW LATAbits.LATA0
+#define LED_RED LATAbits.LATA1
+
+// Prototipos de funciones
+void LCD_Command(uint8_t cmd);
+void LCD_Char(char data);
+void LCD_Init();
+void LCD_Print(const char* str);
+void delay_ms(uint16_t ms);
+char Keypad_GetKey();
+
+uint8_t a = 0, b = 0, c = 0, d = 0; // Contraseña
+uint8_t var = 0;
+int C1 = 1, C2 = 2, C3 = 3, C4 = 4;
+char f = '*';
+int veces = 0, aviso = 3;
+
+void main() {
+    // Inicialización
+    TRISC = 0x00; // Configura el puerto C como salida para el LCD
+    TRISA = 0x00; // Configura el puerto A como salida para los LEDs
+    LCD_Init();
+
+    while (1) {
+        char key = Keypad_GetKey(); // Función que obtendrá la tecla presionada
+        if (key) {
+            LCD_Char(key);
+            LCD_Char(f); // Mostrar carácter oculto
+
+            key -= '0'; // Conversión de char a entero
+            var++;
+
+            switch (var) {
+                case 1: a = key; break;
+                case 2: b = key; break;
+                case 3: c = key; break;
+                case 4: d = key; break;
+            }
+
+            if (var == 4) {
+                delay_ms(100);
+                if (a == C1 && b == C2 && c == C3 && d == C4) {
+                    LCD_Print("Password Correcto");
+                    LED_YELLOW = 1;
+                    delay_ms(700);
+                    LED_YELLOW = 0;
+                } else {
+                    LCD_Print("Password Incorrecto");
+                    LED_RED = 1;
+                    delay_ms(400);
+                    LED_RED = 0;
+                    veces++;
+                    aviso--;
+
+                    if (aviso == 0) {
+                        LCD_Print("ALARMA ACTIVADO");
+                    }
+                }
+
+                if (veces >= 3) {
+                    LCD_Print("Alerta Policia");
+                    while (1) {
+                        LED_RED = !LED_RED; // Parpadea LED rojo
+                        delay_ms(100);
+                    }
+                }
+
+                var = 0; // Reiniciar
+                delay_ms(300);
+                LCD_Print("Digite Password");
+            }
+        } else {
+            LCD_Print("Digite Password");
+        }
+        delay_ms(2);
+    }
+}
+
+void LCD_Init() {
+    // Iniciar el LCD (configuración específica)
+    // Envía comandos para configurar el LCD, como modo de 4 bits
+}
+
+void LCD_Command(uint8_t cmd) {
+    // Enviar comando al LCD
+}
+
+void LCD_Char(char data) {
+    // Enviar carácter al LCD
+}
+
+void LCD_Print(const char* str) {
+    // Imprimir cadena en el LCD
+}
+
+char Keypad_GetKey() {
+    // Implementar lectura del teclado
+    // Retorna el carácter presionado o 0 si no hay
+    return 0;
+}
+
+void delay_ms(uint16_t ms) {
+    for (uint16_t i = 0; i < ms; i++) {
+        __delay_ms(1);
+    }
+}
+

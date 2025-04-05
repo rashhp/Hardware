@@ -1,0 +1,33 @@
+#include <18F4550.H>
+#fuses HSPLL, PLL5, USBDIV, NOWDT, CPUDIV1, NOPROTECT, NODEBUG, NOPBADEN, NOLVP, NOVREGEN
+#use delay(clock = 4000000)
+#define LCD_DATA_PORT getenv("SFR:PORTB")
+#include <lcd.c>
+#include "KBD4x4.c"
+
+void main(){
+  set_tris_D(0xFF);
+  set_tris_B(0x00);
+  char tecla;
+  lcd_init();
+  kbd_init();
+  output_B(0x00);
+
+  lcd_gotoxy(1, 1);
+  printf(lcd_putc, "Presiona Tecla");
+
+  lcd_gotoxy(1, 2);
+while(true){
+  tecla = kbd_getc();
+if(tecla!=0){
+  lcd_putc(tecla);
+  delay_ms(200);
+  }
+}
+}
+
+
+    
+    
+   
+       

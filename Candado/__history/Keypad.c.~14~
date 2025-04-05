@@ -1,0 +1,73 @@
+#include <18F4550.h>          // Asegúrate de que esta es la biblioteca correcta
+#use delay(clock=4000000)   // Configura el reloj a 4 MHz
+#include <lcd.c>              // Incluye el archivo de la biblioteca LCD
+
+#define KEY_ROWS 4
+#define KEY_COLS 4
+
+// Define las conexiones del teclado
+unsigned char keypad[KEY_ROWS][KEY_COLS] = {
+    {'1', '2', '3', 'A'},
+    {'4', '5', '6', 'B'},
+    {'7', '8', '9', 'C'},
+    {'*', '0', '#', 'D'}
+};
+
+// Prototipos de funciones
+void Keypad_Init();
+unsigned char Keypad_Key_Click();
+void Lcd_Init();
+void Lcd_Cmd(char cmd);
+void Lcd_Chr(unsigned char row, unsigned char column, char data);
+void Lcd_Out(unsigned char row, unsigned char column, const char* text);
+
+void main() {
+    // Inicializa el LCD
+    Lcd_Init();
+    Lcd_Cmd(_LCD_CLEAR);      // Limpia la pantalla
+    Lcd_Cmd(_LCD_CURSOR_OFF); // Desactiva el cursor
+    Lcd_Out(1, 1, "SE INGRESO :"); // Mensaje inicial
+
+    unsigned char kp;
+
+    while (1) {
+        kp = Keypad_Key_Click(); // Lee el teclado
+        if (kp) {
+            // Muestra el carácter en la pantalla LCD
+            Lcd_Chr(1, 15, kp);
+        }
+    }
+}
+
+// Implementación de la función para inicializar el teclado
+void Keypad_Init() {
+    // Configura pines de filas como entradas y columnas como salidas
+}
+
+// Implementación de la función para leer el teclado
+unsigned char Keypad_Key_Click() {
+    // Lógica para detectar la tecla presionada
+    // Revisa filas y columnas para identificar la tecla
+    return 0; // Cambia esto según tu lógica
+}
+
+// Implementación de la función de inicialización del LCD
+void Lcd_Init() {
+    // Inicializa la pantalla LCD
+}
+
+// Implementación de comandos para el LCD
+void Lcd_Cmd(char cmd) {
+    // Envía comandos al LCD
+}
+
+// Implementación para mostrar un carácter en el LCD
+void Lcd_Chr(unsigned char row, unsigned char column, char data) {
+    // Muestra un carácter en la posición dada
+}
+
+// Implementación para mostrar texto en el LCD
+void Lcd_Out(unsigned char row, unsigned char column, const char* text) {
+    // Muestra una cadena de texto en el LCD
+}
+

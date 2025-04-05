@@ -1,0 +1,84 @@
+#include <18F4550.h>
+#use delay(clock=4000000)
+#include <lcd.c>
+
+#define KEY_ROWS 4
+#define KEY_COLS 3
+
+// Mapa del keypad
+char keypad[KEY_ROWS][KEY_COLS] = {
+    {'1', '2', '3'},
+    {'4', '5', '6'},
+    {'7', '8', '9'},
+    {'*', '0', '#'}
+};
+
+// Inicializa el keypad
+void init_keypad() {
+    set_tris_B(0xF0); // Filas como entradas, columnas como salidas
+    output_b(0x07);   // Pone las columnas en alto
+}
+
+// Lee la tecla presionada
+char get_key() {
+    for (int col = 0; col < KEY_COLS; col++) {
+        output_low(PIN_B0 + col); // Activa la columna actual
+        delay_ms(5); // Estabiliza la señal
+
+        for (int row = 0; row < KEY_ROWS; row++) {
+            if (input(PIN_B4 + row) == 0) { // Si se detecta una pulsación
+                delay_ms(50); // Espera estabilización
+                while (input(PIN_B4 + row) == 0); // Espera a que se suelte la tecla
+                output_high(PIN_B0 + col); // Desactiva la columna
+                return keypad[row][col]; // Retorna el valor de la tecla
+            }
+        }
+        output_high(PIN_B0 + col); // Desactiva la columna
+    }
+    return 0; // No se detectó ninguna tecla
+}
+
+void main() {
+    char key;
+    char password[5] = "1234"; // Contraseña correcta
+    char input_password[5] = ""; // Almacena la entrada del usuario
+    int i = 0;
+
+    // Configura puertos
+    set_tris_D(0x00); // RD como salidas (LCD)
+    lcd_init();       // Inicializar el LCD
+
+    // Mensaje inicial en el LCD
+    lcd_gotoxy(1, 1);
+    printf(lcd_putc, "INGRESE:    ");
+
+    init_keypad(); // Inicializar el teclado
+
+    while (true) {
+        key = get_key(); // Obtener la tecla presionada
+        if (key) { // Si hay una tecla presionada
+            if (i < 4) {
+                input_password[i] = key; // Almacena la tecla
+                input_password[i + 1] = '\0'; // Agrega el terminador de cadena
+                lcd_gotoxy(1, 2); // Mueve el cursor a la segunda línea
+                printf(lcd_putc, "%s   ", input_password); // Muestra la contraseña ingresada
+                i++;
+            }
+            if (i == 4) { // Si se han ingresado 4 dígitos
+                if (memcmp(input_password, password, 4) == 0) {
+                    lcd_gotoxy(1, 1);
+                    printf(lcd_putc, "CORRECTA   "); // Muestra mensaje de contraseña correcta
+                } else {
+                    lcd_gotoxy(1, 1);
+                    printf(lcd_putc, "INCORRECTA "); // Muestra mensaje de contraseña incorrecta
+                }
+                delay_ms(2000); // Espera 2 segundos
+                lcd_gotoxy(1, 1);
+                printf(lcd_putc, "INGRESE:    "); // Limpia la línea
+                i = 0; // Reinicia el contador
+                input_password[0] = '\0'; // Reinicia la entrada
+            }
+        }
+    }
+}
+

@@ -1,0 +1,46 @@
+#use delay(clock = 48MHz)
+#define LCD_DATA_PORT getenv("SFR:PORTB")
+#include <lcd.c>
+#include "KBD4x4.c"
+
+void main(void){
+
+char tecla;
+char Password[4];
+int dir = 0;
+
+lcd_init();
+kbd_init();
+
+lcd_gotoxy(1,1);
+lcd_putc("INGRESE PASSWORD: ");
+lcd_gotoxy(1,2);
+
+while(true){
+tecla = kbd_getc();
+if(tecla != 0){
+Password[dir] = tecla;
+lcd_putc(tecla);
+delay_ms(50);
+
+dir = dir + 1;
+
+if(dir == 4){
+if(Password[0]== '1' && Password[1]== '2' && Password[2]== '3' && Password[3]== '4')
+{
+lcd_gotoxy(1,1);
+lcd_putc("CODIGO CORRECTO");
+output_high(PIN_A1);
+delay_ms(5000);
+output_low(PIN_A1);
+
+lcd_gotoxy(1,1);
+lcd_putc("INGRESE PASSWORD: ");
+lcd_gotoxy(1,2);
+dir = 0;
+}
+
+}
+}
+
+}

@@ -1,0 +1,90 @@
+#include <18F4550.h>
+#fuses HS,NOLVP // Configuración del oscilador y programación
+#use delay(clock=4000000)
+#include <lcd.c> // Asegúrate de que esta biblioteca sea compatible
+
+#define ROWS 4
+#define COLS 3
+
+const char hexaKeys[ROWS][COLS] = {
+    {'1', '2', '3'},
+    {'4', '5', '6'},
+    {'7', '8', '9'},
+    {'*', '0', '#'}
+};
+
+unsigned char rowPins[ROWS] = {0, 1, 2, 3}; // RB0, RB1, RB2, RB3
+unsigned char colPins[COLS] = {4, 5, 6};    // RB4, RB5, RB6
+
+void lcd_init();
+void lcd_command(unsigned char cmd);
+void lcd_data(unsigned char data);
+void lcd_print(const char *str);
+char keypad_get_key();
+
+void main() {
+    // Configurar puertos
+    set_tris_B(0b00001111); // RB0-RB3 como entradas, RB4-RB6 como salidas
+    set_tris_D(0x00);       // RD como salidas para el LCD
+    lcd_init();             // Inicializar el LCD
+    lcd_print("PIC Keypad");
+    delay_ms(2000);
+    lcd_command(0x01); // Limpiar la pantalla
+
+    while (true) {
+        lcd_print("Press any key");
+        char customKey = keypad_get_key();
+
+        if (customKey) {
+            lcd_command(0xC0); // Mover el cursor a la segunda línea
+            lcd_data(customKey);
+            lcd_print(" is pressed");
+        }
+    }
+}
+
+void lcd_init() {
+    delay_ms(20); // Espera para inicializar el LCD
+    lcd_command(0x38); // Configura el LCD en modo de 8 bits
+    lcd_command(0x0C); // Enciende el display
+    lcd_command(0x01); // Limpia el display
+    lcd_command(0x06); // Mueve el cursor a la derecha
+}
+
+void lcd_command(unsigned char cmd) {
+    PORTD = cmd; // Enviar comando al LCD
+    PORTD.RD0 = 0; // RS = 0 para comando
+    PORTD.RD1 = 1; // E = 1 para habilitar
+    delay_ms(1);
+    PORTD.RD1 = 0; // E = 0
+    delay_ms(2);
+}
+
+void lcd_data(unsigned char data) {
+    PORTD = data; // Enviar datos al LCD
+    PORTD.RD0 = 1; // RS = 1 para datos
+    PORTD.RD1 = 1; // E = 1 para habilitar
+    delay_ms(1);
+    PORTD.RD1 = 0; // E = 0
+    delay_ms(2);
+}
+
+char keypad_get_key() {
+    for (unsigned char col = 0; col < COLS; col++) {
+        // Activar la columna
+        PORTB = ~(1 << (4 + col)); // Asume que RB4, RB5, RB6 son columnas
+        
+        for (unsigned char row = 0; row < ROWS; row++) {
+            if (!(PORTB & (1 << row))) { // Si la fila está baja
+                delay_ms(20); // Esperar para evitar rebotes
+                if (!(PORTB & (1 << row))) { // Verifica si la tecla sigue presionada
+                    PORTB = 0xFF; // Desactiva todas las columnas
+                    return hexaKeys[row][col];
+                }
+            }
+        }
+        PORTB = 0xFF; // Desactiva todas las columnas
+    }
+    return 0; // No se presionó ninguna tecla
+}
+

@@ -1,0 +1,92 @@
+#include <18F4550.h>
+#device ADC=10
+#fuses INTRC, NOWDT, NOLVP  // Configuración del PIC18F4550
+#define _XTAL_FREQ 8000000 
+
+#byte PORTA = 0x05
+#byte PORTC = 0x07
+#byte TRISA = 0x85
+#byte TRISC = 0x87
+
+// Prototipos
+char Keypad_GetKey();
+void delay_ms(unsigned int ms);
+
+void main() {
+    // Inicialización
+    TRISC = 0x00; // Configura el puerto C como salida para el LCD
+    TRISA = 0x00; // Configura el puerto A como salida para los LEDs
+
+    unsigned char a = 0, b = 0, c = 0, d = 0; // Contraseña
+    unsigned char var = 0;
+    int C1 = 1, C2 = 2, C3 = 3, C4 = 4;
+    char f = '*';
+    int veces = 0, aviso = 3;
+
+    while (1) {
+        // Leer el teclado (implementar la lectura específica)
+        char key = Keypad_GetKey(); // Llama a la función para obtener la tecla
+
+        if (key) {
+            // Mostrar carácter en el LCD
+            // Implementar el envío del carácter al LCD aquí
+
+            key -= '0'; // Conversión de char a entero
+            var++;
+
+            switch (var) {
+                case 1: a = key; break;
+                case 2: b = key; break;
+                case 3: c = key; break;
+                case 4: d = key; break;
+            }
+
+            if (var == 4) {
+                delay_ms(100); // Retardo de 100 ms
+
+                if (a == C1 && b == C2 && c == C3 && d == C4) {
+                    // Mostrar "Password Correcto" en el LCD
+                    // Encender LED amarillo
+                } else {
+                    // Mostrar "Password Incorrecto" en el LCD
+                    // Encender LED rojo
+                    veces++;
+                    aviso--;
+
+                    if (aviso == 0) {
+                        // Mostrar "ALARMA ACTIVADO" en el LCD
+                    }
+                }
+
+                if (veces >= 3) {
+                    // Mostrar "Alerta Policia" en el LCD
+                    while (1) {
+                        // Parpadea LED rojo
+                    }
+                }
+
+                var = 0; // Reiniciar
+                delay_ms(300);
+                // Mostrar "Digite Password" en el LCD
+            }
+        } else {
+            // Mostrar "Digite Password" en el LCD
+        }
+
+        delay_ms(2);
+    }
+}
+
+// Implementar la lectura del teclado aquí
+char Keypad_GetKey() {
+    // Implementar la lógica para leer el teclado
+    return 0; // Retornar el carácter presionado o 0 si no hay
+}
+
+// Retardo en milisegundos
+void delay_ms(unsigned int ms) {
+    while (ms--) {
+        __delay_ms(1);
+    }
+}
+

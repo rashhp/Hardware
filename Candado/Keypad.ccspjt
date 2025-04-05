@@ -1,0 +1,73 @@
+[PROJECT]
+Target=Keypad.hex
+Processor_Text=PIC18F4550
+CCSVerions=5.115
+Compiler=PCH
+CCSVersion=5.115
+[Target Data]
+FileList=Keypad.c
+[Directories]
+Include=
+[C:\Users\usuario\Desktop\Pract13\Keypad]
+Type=4
+[mru-list]
+1=Keypad.c
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=23-10-2024
+D1_L=30
+D1_L1=[44740]Project Opened.
+D1_L2=[49407]Started Editing.
+D1_L3=[49863]Stopped Editing.
+D1_L4=[49881]Started Editing.
+D1_L5=[50181]Stopped Editing.
+D1_L6=[50224]Started Editing.
+D1_L7=[50643]Stopped Editing.
+D1_L8=[50931]Started Editing.
+D1_L9=[51338]Stopped Editing.
+D1_L10=[51876]Started Editing.
+D1_L11=[52176]Stopped Editing.
+D1_L12=[53355]Started Editing.
+D1_L13=[53746]Stopped Editing.
+D1_L14=[53894]Started Editing.
+D1_L15=[54978]Stopped Editing.
+D1_L16=[55161]Started Editing.
+D1_L17=[55717]Stopped Editing.
+D1_L18=[58470]Started Editing.
+D1_L19=[58989]Stopped Editing.
+D1_L20=[59780]Started Editing.
+D1_L21=[60243]Stopped Editing.
+D1_L22=[60601]Started Editing.
+D1_L23=[61138]Stopped Editing.
+D1_L24=[65495]Started Editing.
+D1_L25=[66163]Stopped Editing.
+D1_L26=[66947]Started Editing.
+D1_L27=[67943]Stopped Editing.
+D1_L28=[68813]Started Editing.
+D1_L29=[69113]Stopped Editing.
+TotalEdit=54
+TotalDebug=0
+D1_E=54
+D1_D=0
+D1_L30=[69404]Project Closed.
+
+[Opened Files]
+1=Keypad.c
+t1=25
+Count=2
+2=KBD4x4.c
+t2=1
+3=..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c
+t3=66
+[Keypad.c]
+Type=4
+
+[defines]
+buildcount=21
+[Units]
+Count=1
+1=Keypad (main)

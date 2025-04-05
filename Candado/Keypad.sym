@@ -1,0 +1,119 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     kbd_getc.kbd_call_count
+005.0   kbd_getc.kbd_down
+006     kbd_getc.last_key
+007     kbd_getc.col
+008-009 @sprintf_string
+00A     MAIN.tecla
+00B-00E MAIN.Password
+00F     MAIN.dir
+010     kbd_getc.kchar
+010     lcd_init.i
+010     MAIN.@SCRATCH1
+010     @PSTRINGC_728.@SCRATCH1
+011     kbd_getc.row
+011-014 lcd_init.LCD_INIT_STRING
+011     MAIN.@SCRATCH2
+011     @PSTRINGC_728.@SCRATCH2
+012     lcd_putc.c
+012     kbd_getc.@SCRATCH1
+013     lcd_gotoxy.x
+013     kbd_getc.@SCRATCH2
+014     lcd_gotoxy.y
+015     @delay_ms1.P1
+015     lcd_gotoxy.address
+015     lcd_init.@SCRATCH1
+016     lcd_gotoxy.@SCRATCH1
+017     lcd_send_byte.address
+018     lcd_send_byte.n
+019     lcd_read_byte.low
+019     lcd_send_byte.@SCRATCH1
+01A     lcd_send_nibble.n
+01A     lcd_read_byte.high
+01B     lcd_read_byte.@SCRATCH1
+F81     lcd
+F83     PSP_DATA
+F83     kbd
+F8A     lcdlat
+F93     lcdtris
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P3
+FE9-FEA @WRITE_PACKED_MEMORY.P4
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  KEYS.call
+000014  KEYS.data
+000024  @const760.call
+000038  @const765.call
+00004A  @const766.call
+00005C  @const767.call
+00006E  @const768.call
+000082  @delay_ms1
+0000AA  lcd_send_nibble
+0000CA  lcd_read_nibble
+0000D6  lcd_read_byte
+00011C  lcd_send_byte
+000156  lcd_init
+0001CA  kbd_init
+0001CE  lcd_gotoxy
+0001F0  lcd_putc
+000240  @PSTRINGC_728
+000260  kbd_getc
+000316  @goto15930
+000338  MAIN
+000338  @cinit1
+00034C  @cinit2
+
+Project Directory:
+    C:\Users\usuario\Desktop\Pract13\
+
+Project Files:
+    Keypad.c                                                [23-oct.-24 19:06  CRC=A27D69C4]
+    ..\..\..\..\Program Files (x86)\PICC\Devices\18F4550.h  [21-feb.-20 15:51  CRC=0BC0B1A1]
+    ..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c      [22-feb.-16 09:05  CRC=D1A6378A]
+    KBD4x4.c                                                [23-oct.-24 18:36  CRC=4DD3C140]
+
+Source signature=1B8BD56F
+Program memory checksum=0000
+Hex file CRC=1E70
+
+Units:
+    C:\Users\usuario\Desktop\Pract13\Keypad (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Compile Mode:   CCS5
+
+Output Files:
+    XREF file:   Keypad.xsym
+    Errors:      Keypad.err
+    Ext Symbols: Keypad.esym
+    INHX32:      Keypad.hex
+    Symbols:     Keypad.sym
+    List:        Keypad.lst
+    Debug/COFF:  Keypad.cof
+    Project:     Keypad.ccspjt
+    Call Tree:   Keypad.tre
+    Statistics:  Keypad.STA

@@ -1,0 +1,98 @@
+#include <18F4550.h>          // Asegúrate de que esta es la biblioteca correcta
+#use delay(clock=4000000)   // Configura el reloj a 4 MHz
+#include <lcd.c>              // Incluye el archivo de la biblioteca LCD
+#include <stdio.h>
+#include <string.h>
+
+#define _XTAL_FREQ 8000000  // Frecuencia del oscilador
+
+// Configuración de los pines
+#define ROWS 4
+#define COLS 3
+
+// Definición de las filas y columnas del teclado
+const char hexaKeys[ROWS][COLS] = {
+    {'1', '2', '3'},
+    {'4', '5', '6'},
+    {'7', '8', '9'},
+    {'*', '0', '#'}
+};
+
+unsigned char rowPins[ROWS] = {0, 1, 2, 3}; // RB0, RB1, RB2, RB3
+unsigned char colPins[COLS] = {4, 5, 6};    // RB4, RB5, RB6
+
+void lcd_command(unsigned char cmd);
+void lcd_data(unsigned char data);
+void lcd_init();
+void lcd_print(const char *str);
+char keypad_get_key();
+
+void main() {
+    // Configuración de los pines
+    TRISB = 0b00001111; // Configura RB0-RB3 como entradas (filas), RB4-RB6 como salidas (columnas)
+    TRISD = 0;         // Configura el puerto D como salida para el LCD
+
+    lcd_init();
+    lcd_print("PIC Keypad");
+    __delay_ms(2000);
+    lcd_command(0x01); // Clear display
+
+    while (1) {
+        lcd_print("Press any key");
+        char customKey = keypad_get_key();
+        
+        if (customKey) {
+            lcd_command(0xC0); // Mover el cursor a la segunda línea
+            lcd_data(customKey);
+            lcd_print(" is pressed");
+        }
+    }
+}
+
+void lcd_init() {
+    __delay_ms(20); // Esperar 20 ms para que el LCD inicialice
+    lcd_command(0x38); // Configura el LCD en modo de 8 bits
+    lcd_command(0x0C); // Enciende el display sin cursor
+    lcd_command(0x01); // Limpia el display
+    lcd_command(0x06); // Modo de entrada: mover el cursor a la derecha
+}
+
+void lcd_command(unsigned char cmd) {
+    PORTD = cmd; // Envía el comando al puerto D
+    PORTDbits.RD0 = 0; // RS = 0 para comando
+    PORTDbits.RD1 = 1; // E = 1 para habilitar
+    __delay_ms(1);
+    PORTDbits.RD1 = 0; // E = 0
+    __delay_ms(2);
+}
+
+void lcd_data(unsigned char data) {
+    PORTD = data; // Envía datos al puerto D
+    PORTDbits.RD0 = 1; // RS = 1 para datos
+    PORTDbits.RD1 = 1; // E = 1 para habilitar
+    __delay_ms(1);
+    PORTDbits.RD1 = 0; // E = 0
+    __delay_ms(2);
+}
+
+char keypad_get_key() {
+    for (unsigned char col = 0; col < COLS; col++) {
+        // Activa la columna
+        LATB = ~(1 << (4 + col)); // Asume que RB4, RB5, RB6 son columnas
+        
+        for (unsigned char row = 0; row < ROWS; row++) {
+            if (!(PORTB & (1 << row))) { // Si la fila está baja
+                // Esperar un momento para evitar rebotes
+                __delay_ms(20);
+                // Verifica si la tecla sigue presionada
+                if (!(PORTB & (1 << row))) {
+                    LATB = 0xFF; // Desactiva todas las columnas
+                    return hexaKeys[row][col];
+                }
+            }
+        }
+        LATB = 0xFF; // Desactiva todas las columnas
+    }
+    return 0; // No se presionó ninguna tecla
+}
+

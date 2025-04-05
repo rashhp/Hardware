@@ -1,0 +1,60 @@
+unsigned short kp = 0;
+
+char keypadPort at PORTB;
+
+sbit LCD_RS at RD0_bit;
+sbit LCD_EN at RD1_bit;
+sbit LCD_D4 at RD2_bit;
+sbit LCD_D5 at RD3_bit;
+sbit LCD_D6 at RD4_bit;
+sbit LCD_D7 at RD5_bit;
+
+sbit LCD_RS_Direction at TRISD0_bit;
+sbit LCD_EN_Direction at TRISD1_bit;
+sbit LCD_D4_Direction at TRISD2_bit;
+sbit LCD_D5_Direction at TRISD3_bit;
+sbit LCD_D6_Direction at TRISD4_bit;
+sbit LCD_D7_Direction at TRISD5_bit;
+
+void main() {
+ADCON1 = 0x0F;
+
+Keypad_Init();
+
+Lcd_Init();
+Lcd_Cmd(_LCD_CLEAR);
+Lcd_Cmd(_LCD_CURSOR_OFF);
+
+Lcd_Out(1, 1, &quot;SE INGRESO :&quot;);
+
+do {
+kp = 0;
+
+do
+
+kp = Keypad_Key_Click();
+while (!kp);
+
+switch (kp) {
+
+case 1: kp = 55; break; // 7
+case 2: kp = 56; break; // 8
+case 3: kp = 57; break; // 9
+case 4: kp = 47; break; // /
+case 5: kp = 52; break; // 4
+case 6: kp = 53; break; // 5
+case 7: kp = 54; break; // 6
+case 8: kp = 42; break; // *
+case 9: kp = 49; break; // 1
+case 10: kp = 50; break; // 2
+case 11: kp = 51; break; // 3
+case 12: kp = 45; break; // -
+case 13: kp = 126; break; //
+case 14: kp = 48; break; // 0
+case 15: kp = 61; break; // =
+case 16: kp = 43; break; // +
+}
+Lcd_Chr(1, 15, kp);
+
+} while (1);
+}
